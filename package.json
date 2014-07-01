@@ -1,0 +1,42 @@
+{
+  "name": "config-object",
+  "version": "0.0.0",
+  "description": "Configuration as a pure JS object, with helpers :)",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node_modules/.bin/gulp --requre 'coffee-script' test",
+    "prepublish": "node_modules/.bin/gulp --requre 'coffee-script' build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lzrski/config-object.git"
+  },
+  "keywords": [
+    "configuration",
+    "json",
+    "cson",
+    "load",
+    "get",
+    "set",
+    "object"
+  ],
+  "author": "Tadeusz Łazurski <tadeusz@lazurski.pl> (http://lazurski.pl/)",
+  "license": "GPL 3",
+  "bugs": {
+    "url": "https://github.com/lzrski/config-object/issues"
+  },
+  "homepage": "https://github.com/lzrski/config-object",
+  "dependencies": {
+    "cson-safe": "^0.1.1",
+    "error2": "^0.2.1",
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.7.1",
+    "del": "^0.1.1",
+    "gulp": "^3.8.5",
+    "gulp-coffee": "^2.0.1",
+    "gulp-mocha": "^0.4.1",
+    "should": "^4.0.4"
+  }
+}
