@@ -1,6 +1,6 @@
 {
   "name": "config-object",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Configuration as a pure JS object, with helpers :)",
   "main": "lib/index.js",
   "scripts": {
