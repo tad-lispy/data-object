@@ -10,19 +10,19 @@ class ConfigPrototype
       required: no        # Should we rise en error if file doesn't exist?
       format  : undefined # Force format of file (json, cson, etc.). Default - guess from extension
       root    : path.dirname (module.parent?.filename or module.filename)
-    
+
     # In the end every file has to be a string, but ...
     if typeof filename isnt 'string'
       # ... allow arrays to be passed
       if filename.length
         @load f, options for f in filename
         return @
-      else 
+      else
         throw new Error2 "You need to provide a string indicating name of config file"
 
     filename = path.resolve options.root, filename
     # If required option is enabled then honour it
-    if not path.existsSync filename
+    if not fs.existsSync filename
       if options.required then throw new Error2
         message : "File not found"
         filename: filename
