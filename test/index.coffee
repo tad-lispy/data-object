@@ -39,6 +39,17 @@ describe 'config-object', ->
     config.name.should.equal 'config-object'
     config.result.merged.should.equal 'very well!'
 
+  it 'can load an array of files', ->
+    do config.clear
+    config.load [
+      'one.cson'
+      '../package.json'
+      'two.cson'
+    ]
+    config.name.should.eql 'Second test case'
+    config.keywords[0].should.eql 'configuration'
+    config.result.good.should.be.ok
+
   it 'silently ignores nonexisting files', ->
     config.load '../no-such-file.cson'
 
@@ -51,21 +62,55 @@ describe 'config-object', ->
       type: "git"
       url : "https://github.com/lzrski/config-object.git"
 
-  it 'can give a value at given path', ->
+  it 'can give a value at given key', ->
     value = config.get '/bugs/url'
     value.should.equal 'https://github.com/lzrski/config-object/issues'
+
+  it 'will return undefined for non existing key', ->
+    value = config.get '/no/such/path'
+    (value is undefined).should.be.ok
+
+  it 'will throw an error if asked for non existing key and so instructed', ->
+    fn = -> config.get '/no/such/path', throw: true
+    do fn.should.throw
 
   it 'can give a value at given path for arrays as well', ->
     value = config.get '/keywords/0'
     value.should.equal 'configuration'
 
   it 'can be required again and will expose same content', ->
-    config-clone = require '../'
-    value = config.get '/keywords/0'
+    config2 = require '../'
+    value = config2.get '/keywords/0'
     value.should.equal 'configuration'
-    
-  # TODO:
-  # * arrays of files
-  # * config.set
+
+  it 'allows to set arbitrary paths', ->
+    config.set '/a/very/deep/path', 'tresure'
+    config.a.very.deep.path.should.eql 'tresure'
+
+    config.set '/a/very/shallow/path', 'junk'
+    config.a.very.shallow.path.should.eql 'junk'
+
+  it 'allows to clone itself into new, unrelated config object', ->
+    config2 = config.clone root: '/result'
+    config2.merged.should.eql 'very well!'
+
+    # Change in new shouldn't affect old one
+    config2.merged = 'New value'
+    config2.merged.should.eql 'New value'
+    config.result.merged.should.equal 'very well!'
+
+  it 'allows to clone itself with limited number of keys', ->
+    config.load 'three.cson'
+    config2 = config.clone keys: [
+      'nested/a'
+      'nested/b/b2'
+    ]
+    config2.should.eql
+      nested:
+        a:
+          a1: 10
+          a2: 20
+        b:
+          b2: 200
 
   it 'is cool', -> true
