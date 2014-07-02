@@ -44,7 +44,7 @@ describe 'config-object', ->
 
   it 'throws error if nonexisting file is required', ->
     fn = -> config.load '../no-such-file.cson', required: yes
-    do fn.should.throw 
+    do fn.should.throw
 
   it 'preserves content after errors', ->
     config.repository.should.eql
@@ -59,9 +59,13 @@ describe 'config-object', ->
     value = config.get '/keywords/0'
     value.should.equal 'configuration'
 
+  it 'can be required again and will expose same content', ->
+    config-clone = require '../'
+    value = config.get '/keywords/0'
+    value.should.equal 'configuration'
+    
   # TODO:
   # * arrays of files
   # * config.set
-  
-  it 'is cool', -> true
 
+  it 'is cool', -> true
