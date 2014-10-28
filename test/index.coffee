@@ -78,6 +78,13 @@ describe 'config-object', ->
     value = config.get '/keywords/0'
     value.should.equal 'configuration'
 
+  it 'can be altered by changing value retrived from it', ->
+    value = config.get '/keywords', clone: no
+    value.push 'alternation'
+    value = config.get '/keywords'
+    ('alternation' in value).should.be.ok
+    # value.should.equal 'configuration'
+
   it 'can be required again and will expose same content', ->
     config2 = require '../'
     value = config2.get '/keywords/0'
@@ -112,5 +119,10 @@ describe 'config-object', ->
           a2: 20
         b:
           b2: 200
+
+  it 'allows to load file at a given path', ->
+    config.load 'three.cson', at: '/one/two/three'
+    value = config.get '/one/two/three/nested/a/a1'
+    value.should.equal 10
 
   it 'is cool', -> true

@@ -41,8 +41,14 @@ class ConfigPrototype
         filename: filename
         format  : format
 
+    # Where to load new configuration
+    point = @
+    if options.at
+      @set options.at, {} unless @get options.at # Make sure the point exists
+      point = @get options.at, clone: no
+
     # Merge loaded data with this object
-    _(@).merge cfg
+    _(point).merge cfg
     return @
 
   clone: (options = {}) ->
@@ -81,7 +87,9 @@ class ConfigPrototype
 
   get : (key = '/', options = {}) ->
     _.defaults options,
-      throw: no   # throw an error key is not present?
+      throw : no    # throw an error key is not present?
+      clone : yes   # shall it return a pointer or a new object
+
     data  = @
     stack = "/"
     for segment in key.split '/'
@@ -97,7 +105,7 @@ class ConfigPrototype
         else return data[segment]
       data = data[segment]
 
-    return _.cloneDeep data
+    return if options.clone then _.cloneDeep data else data
 
   clear: -> delete @[key] for key of @
 

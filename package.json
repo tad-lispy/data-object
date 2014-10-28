@@ -4,7 +4,8 @@
   "description": "Configuration as a pure JS object, with helpers :)",
   "main": "lib/index.js",
   "scripts": {
-    "test": "gulp --requre 'coffee-script' test",
+    "test": "gulp test",
+    "develop": "gulp watch",
     "prepublish": "gulp --requre 'coffee-script' build"
   },
   "repository": {
