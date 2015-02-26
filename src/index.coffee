@@ -48,7 +48,9 @@ class ConfigPrototype
       point = @get options.at, clone: no
 
     # Merge loaded data with this object
-    _(point).merge cfg
+    _(point)
+      .merge cfg
+      .commit()
     return @
 
   clone: (options = {}) ->
