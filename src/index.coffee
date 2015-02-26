@@ -1,7 +1,7 @@
 _       = require 'lodash'
 path    = require 'path'
 fs      = require 'fs'
-cson    = require 'cson-safe'
+cson    = require 'cson-parser'
 Error2  = require 'error2'
 
 class ConfigPrototype

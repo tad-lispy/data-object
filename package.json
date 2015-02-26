@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/lzrski/config-object",
   "dependencies": {
-    "cson-safe": "^0.1.1",
+    "cson-parser": "^1.0.8",
     "error2": "^0.2.1",
     "lodash": "^3.3.1"
   },
