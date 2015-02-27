@@ -1,1 +1,1 @@
-Please see test cases. I'm too lazy to write proper readme. Sorry.
+Please see [test cases](./tests/index.coffee). I'm too lazy to write proper readme. Sorry.
