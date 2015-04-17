@@ -1,7 +1,7 @@
 {
   "name": "config-object",
   "version": "0.3.1",
-  "description": "Configuration as a pure JS object, with helpers :)",
+  "description": "An object wrapper for easy data manipulation",
   "main": "lib/index.js",
   "scripts": {
     "test": "gulp test",
@@ -10,23 +10,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lzrski/config-object.git"
+    "url": "https://github.com/lzrski/data-object.git"
   },
   "keywords": [
-    "configuration",
-    "json",
-    "cson",
-    "load",
+    "data",
+    "object",
     "get",
     "set",
-    "object"
+    "helpers",
+    "json"
   ],
-  "author": "Tadeusz Łazurski <tadeusz@lazurski.pl> (http://lazurski.pl/)",
+  "author": "Tadeusz Łazurski (http://lazurski.pl/)",
   "license": "GPL 3",
   "bugs": {
-    "url": "https://github.com/lzrski/config-object/issues"
+    "url": "https://github.com/lzrski/data-object/issues"
   },
-  "homepage": "https://github.com/lzrski/config-object",
+  "homepage": "https://github.com/lzrski/data-object",
   "dependencies": {
     "cson-parser": "^1.0.8",
     "error2": "^0.2.1",
