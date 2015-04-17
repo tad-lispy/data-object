@@ -5,6 +5,14 @@ cson    = require 'cson-parser'
 Error2  = require 'error2'
 
 module.exports = class Data
+  constructor: (object = {}) ->
+    if typeof object isnt 'object' then throw new Error2
+      name    : 'TypeError'
+      message : "Data object can only wrap objects. Instead #{typeof object} was passed to the constructor."
+
+    # TODO: implement merge method
+    @merge object
+
   load: (filename, options = {}) ->
     _.defaults options,
       required: no        # Should we rise en error if file doesn't exist?
