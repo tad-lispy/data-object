@@ -4,16 +4,34 @@ Data        = require '../'
 
 describe 'data-object', ->
   describe 'class', ->
-    it 'is a function'
+
+    it 'is a function', ->
+      expect Data
+        .to.be.a 'function'
 
   describe 'instance', ->
 
-    it 'can wrap an existing object'
+    it 'can wrap an existing object', ->
+      object =
+        title   : 'Data Manipulation in JavaScript'
+        author  : 'Katiusza'
+        pages   : 48
+        chapters: [
+          'Introduction'
+          'Why do I like chocolates'
+          'Can cat be a good programmer'
+        ]
 
-    it 'constructed without any arguments wraps a new empty object'
+      expect new Data object
+        .to.eql object
+
+    it 'constructed without any arguments wraps a new empty object', ->
+      expect new Data
+        .to.eql {}
 
 
     describe 'get method', ->
+      
       it 'is a function'
 
       it 'can get a value of a deep property'
