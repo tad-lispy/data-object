@@ -3,45 +3,53 @@
 Data        = require '../'
 
 describe 'data-object', ->
-  it 'initially is an empty object'
+  describe 'class', ->
+    it 'is a function'
 
-  it 'can be cleared'
+  describe 'instance', ->
 
-  it 'preserves content after errors'
+    it 'can wrap an existing object'
 
-  it 'can give a value at given key'
+    it 'constructed without any arguments wraps a new empty object'
 
-  it 'will return undefined for non existing key'
 
-  it 'will throw an error non existing key if asked for'
+    describe 'get method', ->
+      it 'is a function'
 
-  it 'can give a value at given path for arrays as well'
+      it 'can get a value of a deep property'
 
-  it 'can be altered by changing value retrived from it'
+      it 'can clone a value of a deep property'
 
-  it 'allows to set arbitrary paths'
+      it 'will return undefined for non existing deep property'
 
-  it 'allows to clone itself into new, unrelated data object'
-    # config2 = config.clone root: '/result'
-    # config2.merged.should.eql 'very well!'
-    #
-    # # Change in new shouldn't affect old one
-    # config2.merged = 'New value'
-    # config2.merged.should.eql 'New value'
-    # config.result.merged.should.equal 'very well!'
+      it 'will throw an error if asked for non existing deep property and asked for that'
 
-  it 'allows to clone itself with limited number of keys'
-    # config.load 'three.cson'
-    # config2 = config.clone keys: [
-    #   'nested/a'
-    #   'nested/b/b2'
-    # ]
-    # config2.should.eql
-    #   nested:
-    #     a:
-    #       a1: 10
-    #       a2: 20
-    #     b:
-    #       b2: 200
+      it 'can map multiple deep properties to an object'
 
-  it 'is cool', -> true
+      it 'can clone and map multiple deep properties to an object'
+
+      it 'can get a value of a deep property for arrays as well'
+
+      it 'can get entire object'
+
+      it 'can clone entire object'
+
+      it 'can get a value without given deep properties'
+
+    describe 'set method', ->
+
+      it 'can set a value of a deep property'
+
+    describe 'merge method', ->
+
+      it 'can merge wrapped object with another one'
+
+      it 'can merge wrapped object with another one at a given deep property'
+
+    describe 'delete method', ->
+
+      it 'can delete a deep property'
+
+  describe 'overal experience', ->
+
+    it 'is cool', -> true
