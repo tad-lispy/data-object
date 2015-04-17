@@ -1,3 +1,5 @@
+do (require "source-map-support").install # TODO: Sourcemaps doesn't seem to work
+
 { expect }  = require 'chai'
 
 Data        = require '../'
