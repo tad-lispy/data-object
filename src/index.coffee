@@ -4,7 +4,7 @@ fs      = require 'fs'
 cson    = require 'cson-parser'
 Error2  = require 'error2'
 
-class ConfigPrototype
+module.exports = class Data
   load: (filename, options = {}) ->
     _.defaults options,
       required: no        # Should we rise en error if file doesn't exist?
@@ -110,13 +110,3 @@ class ConfigPrototype
     return if options.clone then _.cloneDeep data else data
 
   clear: -> delete @[key] for key of @
-
-# Hide functionality to avoid accidental overwriting
-class Config extends ConfigPrototype
-module.exports = new Config
-
-###
-
-[CSON]: https://github.com/bevry/cson
-
-###
