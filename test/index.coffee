@@ -9,6 +9,10 @@ describe 'data-object', ->
       expect Data
         .to.be.a 'function'
 
+    it 'throws if anything else then object is passed to it', ->
+      expect -> new Data "It's a string!"
+        .to.throw 'Data object can only wrap objects. Instead string was passed to the constructor.'
+
   describe 'instance', ->
 
     it 'can wrap an existing object', ->
@@ -29,9 +33,8 @@ describe 'data-object', ->
       expect new Data
         .to.eql {}
 
-
     describe 'get method', ->
-      
+
       it 'is a function'
 
       it 'can get a value of a deep property'
