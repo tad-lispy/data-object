@@ -2,10 +2,10 @@
   "name": "config-object",
   "version": "0.3.1",
   "description": "An object wrapper for easy data manipulation",
-  "main": "lib/index.js",
+  "main": "build/index.js",
   "scripts": {
     "test": "gulp test",
-    "develop": "gulp watch",
+    "develop": "gulp develop",
     "prepublish": "gulp build"
   },
   "repository": {
@@ -32,11 +32,15 @@
     "lodash": "^3.3.1"
   },
   "devDependencies": {
+    "chai": "^2.2.0",
     "coffee-script": "^1.9.1",
     "del": "^1.1.1",
-    "gulp": "^3.8.11",
+    "gulp": "git://github.com/gulpjs/gulp.git#4.0",
+    "gulp-cli": "git://github.com/gulpjs/gulp-cli#4.0",
     "gulp-coffee": "^2.3.1",
-    "gulp-mocha": "^2.0.0",
-    "should": "^5.0.1"
+    "gulp-mocha": "^2.0.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "should": "^5.0.1",
+    "through2": "^0.6.5"
   }
 }

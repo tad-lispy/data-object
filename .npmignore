@@ -1,4 +1,5 @@
 src
 gulpfile.coffee
 test
-config-object-*.tgz
+data-object-*.tgz
+npm-debug.log
