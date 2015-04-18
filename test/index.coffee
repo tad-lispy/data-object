@@ -35,9 +35,32 @@ describe 'data-object', ->
 
     describe 'get method', ->
 
-      it 'is a function'
+      data = null
 
-      it 'can get a value of a deep property'
+      beforeEach ->
+        data = new Data
+          title   : 'Data Manipulation in JavaScript'
+          author  :
+            name    : 'Katiusza'
+            species : 'Cat'
+            featurs : [
+              'small'
+              'funny'
+            ]
+          pages   : 48
+          chapters: [
+            'Introduction'
+            'Why do I like gorgonzola cheese'
+            'Can cat be a good programmer'
+          ]
+
+      it 'is a function', ->
+        expect data.get
+          .to.be.a 'function'
+
+      it 'can get a value of a deep property', ->
+        expect data.get '/author/name'
+          .to.eql 'Katiusza'
 
       it 'can clone a value of a deep property'
 
