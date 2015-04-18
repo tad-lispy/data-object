@@ -6,10 +6,7 @@ Error2  = require 'error2'
 
 module.exports = class Data
   constructor: (object) ->
-    Object.defineProperty @, 'wrapped',
-      configurable: no
-      enumerable  : no
-      value       : object
+    _.merge @, object
 
   # TODO: Implement method wrapper
   get: (path = '/', options = {}) ->
@@ -21,8 +18,7 @@ module.exports = class Data
     # if typeof null is 'object' then javascript = 'funny'
     if path is null then path = undefined
 
-    # FIX: Do not wrap object
-    data      = @wrapped
+    data      = @
 
     if typeof path is 'object'
       # Run recursively until path is a string
