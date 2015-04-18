@@ -5,6 +5,56 @@ cson    = require 'cson-parser'
 Error2  = require 'error2'
 
 module.exports = class Data
+  constructor: (object) ->
+    Object.defineProperty @, 'wrapped',
+      configurable: no
+      enumerable  : no
+      value       : object
+
+  # TODO: Implement method wrapper
+  get: (path = '/', options = {}) ->
+    _.defaults options,
+      throw     : yes
+      clone     : yes
+      separator : '/'
+
+    # if typeof null is 'object' then javascript = 'funny'
+    if path is null then path = undefined
+
+    # FIX: Do not wrap object
+    data      = @wrapped
+
+    if typeof path is 'object'
+      # Run recursively until path is a string
+      # TODO: get.call @, value, options
+      return _.mapValues path, (value) -> @get value, options
+
+    if typeof path not in ['string', 'undefined']
+      throw new TypeError "Argument 'path' has to be a string or a hash"
+
+    stack     = '/'
+    segments  = path.split options.separator
+    for segment in segments
+      if not segment then continue # handle empty segments, e.g. in 'a//b'
+      if not data[segment]?
+        if options.throw then throw new Error2 {
+          name    : 'PropertyError'
+          message : "Property #{segment} not found at #{stack}"
+          path
+          at      : stack # Can't name this property 'stack', as it is used internally
+          segment
+        }
+        else return data[segment] # null or undefined
+
+      data = data[segment]
+      stack += segment + '/'
+
+    if options.clone
+      return _.clone data, yes
+    else
+      return data
+
+
   load: (filename, options = {}) ->
     _.defaults options,
       required: no        # Should we rise en error if file doesn't exist?
@@ -86,27 +136,5 @@ module.exports = class Data
         return @
       if typeof data[segment] isnt 'object' then data[segment] = {}
       data = data[segment]
-
-  get : (key = '/', options = {}) ->
-    _.defaults options,
-      throw : no    # throw an error key is not present?
-      clone : yes   # shall it return a pointer or a new object
-
-    data  = @
-    stack = "/"
-    for segment in key.split '/'
-      if not segment then continue
-      stack += "#{segment}/"
-      if not data[segment] # Missing segment?
-        if options.throw then throw new Error2
-          name    : "Not found"
-          message : "Config key not found at #{stack}"
-          nearest : stack
-          segment : segment
-          key     : key
-        else return data[segment]
-      data = data[segment]
-
-    return if options.clone then _.cloneDeep data else data
 
   clear: -> delete @[key] for key of @
