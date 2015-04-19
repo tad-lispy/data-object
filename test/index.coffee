@@ -26,8 +26,20 @@ describe 'data-object', ->
           'Can cat be a good programmer'
         ]
 
-      expect new Data object
-        .to.eql object
+      data = new Data object
+
+      for own property of object
+        expect data[property]
+          .to.eql object[property]
+
+      # And vice versa
+      for own property of data
+        expect object[property]
+          .to.eql data[property]
+
+      # This however doesnt work. Does eql assertion compare prototypes?
+      # expect new Data object
+      #   .to.eql object
 
     it 'constructed without any arguments wraps a new empty object', ->
       expect new Data
