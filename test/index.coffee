@@ -43,7 +43,8 @@ describe 'data-object', ->
 
     it 'constructed without any arguments wraps a new empty object', ->
       expect new Data
-        .to.eql {}
+        .to.be.an 'object'
+        .and.to.be.empty
 
     describe 'get method', ->
 
