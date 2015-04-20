@@ -5,7 +5,11 @@ cson    = require 'cson-parser'
 Error2  = require 'error2'
 
 module.exports = class Data
-  constructor: (object) ->
+  constructor: (object = {}) ->
+    if typeof object isnt 'object' then throw new Error2
+      name    : 'TypeError'
+      message : "Data object can only wrap objects. Instead #{typeof object} was passed to the constructor."
+
     _.merge @, object
 
   # TODO: Implement method wrapper
