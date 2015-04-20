@@ -1,6 +1,6 @@
 {
-  "name": "config-object",
-  "version": "0.3.1",
+  "name": "data-object",
+  "version": "0.0.0",
   "description": "An object wrapper for easy data manipulation",
   "main": "build/index.js",
   "scripts": {
