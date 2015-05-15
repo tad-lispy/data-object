@@ -29,6 +29,7 @@ data.get 'a/c/e'  # Elf
 data.get 'a/c'    # d: 2, e: Elf
 data.bonus = 200
 data.get 'bonus'  # 200
+data.get number: 'a/c/d', animal: 'a/f' # number: 2, animal: 'Ferret'
 ```
 
 ATM only most basic `get` works. More functionality is to come, including:
