@@ -81,7 +81,17 @@ describe 'data-object', ->
 
       it 'will throw an error if asked for non existing deep property and asked for that'
 
-      it 'can map multiple deep properties to an object'
+      it 'can map multiple deep properties to an object', ->
+        mapped = data.get
+          title   : 'title'
+          species : 'author/species'
+
+        expected =
+          title   : 'Data Manipulation in JavaScript'
+          species : 'Cat'
+
+        expect mapped
+          .to.eql expected
 
       it 'can clone and map multiple deep properties to an object'
 
