@@ -75,7 +75,17 @@ describe 'data-object', ->
         expect data.get '/author/name'
           .to.eql 'Katiusza'
 
-      it 'can clone a value of a deep property'
+      it 'by default clones a value of a deep property', ->
+        author = data.get 'author'
+        author.name = 'Scoobie'
+        expect data.get '/author/name'
+          .to.eql 'Katiusza'
+
+      it 'can get an object that is a value of a deep property', ->
+        author = data.get 'author', clone: no
+        author.name = 'Scoobie'
+        expect data.get '/author/name'
+          .to.eql 'Scoobie'
 
       it 'will return undefined for non existing deep property'
 
