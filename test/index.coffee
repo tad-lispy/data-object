@@ -87,9 +87,16 @@ describe 'data-object', ->
         expect data.get '/author/name'
           .to.eql 'Scoobie'
 
-      it 'will return undefined for non existing deep property'
+      it 'will return undefined for non existing deep property if asked ', ->
+        expect data.get 'author/food/favourite', throw: no
+          .not.to.exist
 
-      it 'will throw an error if asked for non existing deep property and asked for that'
+      it 'will throw an error for non existing deep property', ->
+        fn = -> data.get 'author/food/favourite'
+        expect fn
+          .to.throw 'Property food not found at /author/'
+          .with.property 'name', 'PropertyError'
+
 
       it 'can map multiple deep properties to an object', ->
         mapped = data.get
