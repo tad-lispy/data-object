@@ -12,8 +12,6 @@ gulp.task 'coffee', ->
   development = process.env.NODE_ENV is 'development'
 
   gulp
-    # TODO: keep sources in src directory w/ subdirs
-    # .src 'src/**/*.coffee'
     .src 'src/**/*.coffee'
     .pipe sourcemaps.init()
     .pipe coffee()
