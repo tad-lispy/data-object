@@ -27,7 +27,7 @@ module.exports = class Data
     if typeof path is 'object'
       # Run recursively until path is a string
       # TODO: get.call @, value, options
-      return _.mapValues path, (value) -> @get value, options
+      return _.mapValues path, (value) => @get value, options
 
     if typeof path not in ['string', 'undefined']
       throw new TypeError "Argument 'path' has to be a string or a hash"
